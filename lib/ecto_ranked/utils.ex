@@ -14,6 +14,7 @@ defmodule EctoRanked.Utils do
   """
   @spec ceiling(float) :: integer
   def ceiling(value) when value < 0, do: trunc(value)
+
   def ceiling(value) do
     truncated = trunc(value)
     if value - truncated == 0, do: truncated, else: truncated + 1
