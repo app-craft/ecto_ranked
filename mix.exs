@@ -2,26 +2,30 @@ defmodule EctoRanked.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :ecto_ranked,
-     version: "0.2.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     elixirc_paths: elixirc_paths(Mix.env),
-     docs: [main: "readme", extras: ["README.md"]],
-     aliases: aliases(),
-     package: package(),
-     deps: deps()]
+    [
+      app: :ecto_ranked,
+      version: "0.2.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      docs: [main: "readme", extras: ["README.md"]],
+      aliases: aliases(),
+      package: package(),
+      deps: deps()
+    ]
   end
 
   defp package do
-    [description: "Add and maintain rankings to sort your data with Ecto",
-     files: ["lib", "mix.exs", "README*"],
-     maintainers: ["Dylan Markow"],
-     licenses: ["MIT"],
-     links: %{github: "https://github.com/dmarkow/ecto_ranked"}
+    [
+      description: "Add and maintain rankings to sort your data with Ecto",
+      files: ["lib", "mix.exs", "README*"],
+      maintainers: ["Dylan Markow"],
+      licenses: ["MIT"],
+      links: %{github: "https://github.com/dmarkow/ecto_ranked"}
     ]
   end
+
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
@@ -34,7 +38,7 @@ defmodule EctoRanked.Mixfile do
   defp elixirc_paths(_), do: ["lib"]
 
   defp aliases do
-    ["test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [test: ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 
   # Dependencies can be Hex packages:
@@ -47,8 +51,11 @@ defmodule EctoRanked.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:ecto, "~> 2.0"},
-     {:postgrex, "~> 0.13.2", only: :test},
-     {:ex_doc, "~> 0.14", only: :dev, runtime: false}]
+    [
+      {:ecto, "~> 3.0"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, "~> 0.14", only: :test},
+      {:ex_doc, "~> 0.19", only: :dev, runtime: false}
+    ]
   end
 end
